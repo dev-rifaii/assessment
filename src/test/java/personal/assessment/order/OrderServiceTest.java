@@ -27,9 +27,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
-
 @ExtendWith(MySqlTestContainerExtension.class)
-class OrderServiceTest  {
+@SpringBootTest
+class OrderServiceTest {
 
 
     @Autowired

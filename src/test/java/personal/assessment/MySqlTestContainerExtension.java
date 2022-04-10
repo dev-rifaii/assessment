@@ -19,12 +19,6 @@ public  class MySqlTestContainerExtension implements BeforeAllCallback {
         registry.add("spring.datasource.password", container::getPassword);
     }
 
-//    static {
-//        if (!container.isRunning()) {
-//            container.start();
-//        }
-//    }
-
     @Override
     public void beforeAll(ExtensionContext extensionContext) throws Exception {
         if (!container.isRunning()) {
