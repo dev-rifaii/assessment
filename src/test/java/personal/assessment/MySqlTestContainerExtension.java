@@ -9,7 +9,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MySQLContainer;
 
 @SpringBootTest
-public  class MySqlTestContainerExtension implements BeforeAllCallback {
+public class MySqlTestContainerExtension implements BeforeAllCallback {
     private static MySQLContainer container = (MySQLContainer) new MySQLContainer("mysql:latest").withReuse(true);
 
     @DynamicPropertySource
@@ -23,6 +23,9 @@ public  class MySqlTestContainerExtension implements BeforeAllCallback {
     public void beforeAll(ExtensionContext extensionContext) throws Exception {
         if (!container.isRunning()) {
             container.start();
+            System.setProperty("spring.datasource.url", container.getJdbcUrl());
+            System.setProperty("spring.datasource.username", container.getUsername());
+            System.setProperty("spring.datasource.password", container.getPassword());
         }
     }
 }
